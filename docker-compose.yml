@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+
+  mongo:
+    container_name: ${BASE_APP}_mongodb
+    image: mongo:6.0
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      - MONGODB_DATABASE=${DB_NAME}
+    volumes:
+      - ./data/mongodb:/data/bd
+    networks:
+      - realstate_nest_network
+  
+networks:
+  realstate_nest_network:
+    external: true
